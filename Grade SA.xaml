@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Grade_SA" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1117,2179" sap2010:WorkflowViewState.IdRef="Grade_SA_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Grade_SA" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1117,2557" sap2010:WorkflowViewState.IdRef="Grade_SA_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ufa="clr-namespace:UiPath.Form.Activities;assembly=UiPath.Form.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="22">
       <x:String>System.Activities</x:String>
@@ -48,17 +48,18 @@
       <AssemblyReference>System.Memory</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Grade_SA" sap:VirtualizedContainerService.HintSize="1097,2039" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Grade_SA" sap:VirtualizedContainerService.HintSize="1097,2497" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence sap2010:Annotation.AnnotationText="In the CSV file, grade each short answer response by prompting the teacher using a pop-up dialog containing the student response and an input field for how many points the response received." DisplayName="Grade SA" sap:VirtualizedContainerService.HintSize="1055,1947" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence sap2010:Annotation.AnnotationText="In the CSV file, grade each short answer response by prompting the teacher using a pop-up dialog containing the student response and an input field for how many points the response received." DisplayName="Grade SA" sap:VirtualizedContainerService.HintSize="1055,2492" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:String" Name="FilePath" />
         <Variable x:TypeArguments="sd:DataTable" Name="ResponsesDT" />
         <Variable x:TypeArguments="x:String" Name="AssignmentName" />
+        <Variable x:TypeArguments="x:String" Name="outputdt" />
       </Sequence.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -95,13 +96,13 @@
         </Assign.Value>
       </Assign>
       <ui:ReadCsvFile Encoding="{x:Null}" DataTable="[ResponsesDT]" Delimitator="Comma" DisplayName="Read CSV" FilePath="[FilePath]" sap:VirtualizedContainerService.HintSize="1013,155" sap2010:WorkflowViewState.IdRef="ReadCsvFile_1" />
-      <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[ResponsesDT]" DisplayName="For Each Row" sap:VirtualizedContainerService.HintSize="1013,1383" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+      <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[ResponsesDT]" DisplayName="For Each Row" sap:VirtualizedContainerService.HintSize="1013,1733" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
         <ui:ForEachRow.Body>
           <ActivityAction x:TypeArguments="sd:DataRow">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="For Each Row Sequence" sap:VirtualizedContainerService.HintSize="963,1234" sap2010:WorkflowViewState.IdRef="Sequence_4">
+            <Sequence DisplayName="For Each Row Sequence" sap:VirtualizedContainerService.HintSize="963,1584" sap2010:WorkflowViewState.IdRef="Sequence_4">
               <Sequence.Variables>
                 <Variable x:TypeArguments="x:Int32" Default="0" Name="i" />
               </Sequence.Variables>
@@ -118,11 +119,11 @@
                   <InArgument x:TypeArguments="x:Int32">0</InArgument>
                 </Assign.Value>
               </Assign>
-              <While sap:VirtualizedContainerService.HintSize="921,1042" sap2010:WorkflowViewState.IdRef="While_1">
+              <While sap:VirtualizedContainerService.HintSize="921,1392" sap2010:WorkflowViewState.IdRef="While_1">
                 <While.Condition>
                   <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="i &lt; (ResponsesDT.Columns.Count - 1)" sap2010:WorkflowViewState.IdRef="VisualBasicValue`1_1" />
                 </While.Condition>
-                <Sequence DisplayName="While Sequence" sap:VirtualizedContainerService.HintSize="875,882" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                <Sequence DisplayName="While Sequence" sap:VirtualizedContainerService.HintSize="875,1232" sap2010:WorkflowViewState.IdRef="Sequence_7">
                   <Sequence.Variables>
                     <Variable x:TypeArguments="x:String" Name="Column" />
                   </Sequence.Variables>
@@ -139,9 +140,9 @@
                       <InArgument x:TypeArguments="x:String">[ResponsesDT.Columns(i).ToString]</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <If Condition="[Column.StartsWith(&quot;FR: &quot;)]" sap:VirtualizedContainerService.HintSize="833,690" sap2010:WorkflowViewState.IdRef="If_1">
+                  <If Condition="[Column.StartsWith(&quot;FR: &quot;)]" sap:VirtualizedContainerService.HintSize="833,1040" sap2010:WorkflowViewState.IdRef="If_1">
                     <If.Then>
-                      <Sequence DisplayName="If FR" sap:VirtualizedContainerService.HintSize="526,540" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                      <Sequence DisplayName="If FR" sap:VirtualizedContainerService.HintSize="526,890" sap2010:WorkflowViewState.IdRef="Sequence_6">
                         <Sequence.Variables>
                           <Variable x:TypeArguments="x:Boolean" Name="Done" />
                           <Variable x:TypeArguments="x:Int32" Name="Score" />
@@ -151,24 +152,58 @@
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <DoWhile DisplayName="Do While" sap:VirtualizedContainerService.HintSize="484,348" sap2010:WorkflowViewState.IdRef="DoWhile_1">
+                        <DoWhile DisplayName="Do While" sap:VirtualizedContainerService.HintSize="484,598" sap2010:WorkflowViewState.IdRef="DoWhile_1">
                           <DoWhile.Variables>
                             <Variable x:TypeArguments="x:String" Name="TeacherInput" />
                           </DoWhile.Variables>
-                          <DoWhile.Condition>[Integer.TryParse(TeacherInput, Score)]</DoWhile.Condition>
-                          <Sequence DisplayName="Prompt for Score" sap:VirtualizedContainerService.HintSize="376,184" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                          <DoWhile.Condition>
+                            <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="Integer.TryParse(TeacherInput, Score)" sap2010:WorkflowViewState.IdRef="VisualBasicValue`1_1" />
+                          </DoWhile.Condition>
+                          <Sequence DisplayName="Prompt for Score" sap:VirtualizedContainerService.HintSize="376,434" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                            <Sequence.Variables>
+                              <Variable x:TypeArguments="x:String" Name="FormOutput" />
+                              <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="DeserializedOutput" />
+                            </Sequence.Variables>
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <ui:InputDialog Options="{x:Null}" DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="334,92" sap2010:WorkflowViewState.IdRef="InputDialog_1" IsPassword="False" Label="[&quot;Question: &quot; + Environment.NewLine + Column +&#xD;&#xA;Environment.NewLine + Environment.NewLine +&#xD;&#xA;&quot;Student Answer:&quot; + Environment.NewLine + row.Item(i).ToString + &#xD;&#xA;Environment.NewLine + Environment.NewLine + &#xD;&#xA;&quot;Teacher Input:&quot; + Environment.NewLine + &quot;Type a score out of &quot; + row.Item(i+1).ToString]" Title="Free Response Question">
-                              <ui:InputDialog.Result>
-                                <OutArgument x:TypeArguments="x:String">[TeacherInput]</OutArgument>
-                              </ui:InputDialog.Result>
-                            </ui:InputDialog>
+                            <ufa:FormActivity Dismissed="{x:Null}" FormFieldsInputData="{x:Null}" SelectedButton="{x:Null}" TimeoutInSeconds="{x:Null}" WindowPositionLeft="{x:Null}" WindowPositionTop="{x:Null}" DisableMaximizeButton="False" DisableMinimizeButton="False" DisplayName="Create Form" FormFieldsOutputData="[FormOutput]" FormHeight="400" FormSchema="%[{&quot;label&quot;:&quot;Question&quot;,&quot;disabled&quot;:true,&quot;tableView&quot;:true,&quot;key&quot;:&quot;Question&quot;,&quot;type&quot;:&quot;textfield&quot;,&quot;input&quot;:true},{&quot;label&quot;:&quot;Student Answer&quot;,&quot;showWordCount&quot;:true,&quot;disabled&quot;:true,&quot;tableView&quot;:true,&quot;key&quot;:&quot;StudentAnswer&quot;,&quot;type&quot;:&quot;textfield&quot;,&quot;input&quot;:true},{&quot;label&quot;:&quot;Student Score&quot;,&quot;placeholder&quot;:&quot;How many points did the student score?&quot;,&quot;tableView&quot;:false,&quot;delimiter&quot;:false,&quot;requireDecimal&quot;:false,&quot;validate&quot;:{&quot;required&quot;:true,&quot;customMessage&quot;:&quot;Invalid score&quot;,&quot;min&quot;:0},&quot;key&quot;:&quot;Score&quot;,&quot;type&quot;:&quot;number&quot;,&quot;input&quot;:true},{&quot;type&quot;:&quot;button&quot;,&quot;label&quot;:&quot;Submit&quot;,&quot;key&quot;:&quot;submit&quot;,&quot;disableOnInvalid&quot;:true,&quot;input&quot;:true,&quot;tableView&quot;:false}]" FormTheme="{}{&quot;Activities&quot;:[&quot;FORMS&quot;],&quot;Id&quot;:&quot;1621322174322&quot;,&quot;Name&quot;:&quot;heroplus&quot;,&quot;BaseCss&quot;:&quot;../../assets/css/themes/superhero.bootstrap.min.css&quot;,&quot;ImageSrc&quot;:&quot;../../assets/themeicons/superhero.png&quot;,&quot;OverrideCssUrl&quot;:&quot;&quot;,&quot;UserStyleOverrides&quot;:&quot;body , h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {\n                      font-family : Arial !important;\n                    }table, .btn, .form-control {\n                      font-size : 15px !important;\n                     }h1 {\n                      font-size : 37px !important;\n                    }h2 {\n                      font-size : 31px !important;\n                    }h3 {\n                      font-size : 25px !important;\n                    }h4 {\n                      font-size : 19px !important;\n                    }h5 {\n                      font-size : 15px !important;\n                    }h6 {\n                      font-size : 13px !important;\n                    }body {\n      background:  #2b3e50 !important;\n      font-size : 15px !important;\n      font-family : Arial !important;\n      color : #ebebeb !important\n    } .panel-default {\n                        background:   !important;\n                        border-color :   !important;\n                      }\n                 .panel-default &gt; .panel-heading {\n                        background-color:  !important;\n                        color : #ebebeb !important\n                      }.btn-primary {\n                          background:  #df691a !important;\n                          border-color:  #000000 !important;\n                          color:  #ffffff !important;\n                      } .btn-primary:hover {\n                          background:  #df691a !important;\n                          color:  #ffffff !important;\n                      } .btn-default {\n                        background:   !important;\n                        border-color:   !important;\n                        color:   !important;\n                      } .btn-default:hover {\n                        background:   !important;\n                        color:   !important;\n                      } &quot;,&quot;Properties&quot;:&quot;&quot;,&quot;IsCustomTheme&quot;:true,&quot;Version&quot;:1,&quot;ThemeVersion&quot;:1}" FormTitle="Free Response Question" FormWidth="800" GenerateInputFields="False" sap:VirtualizedContainerService.HintSize="334,142" sap2010:WorkflowViewState.IdRef="FormActivity_1" IsReadOnly="False" MaxColumnsForSchemaGeneration="6" RunDoBlockFirst="False" RunInIsolatedMode="False">
+                              <ufa:FormActivity.Body>
+                                <ActivityAction x:TypeArguments="scg:Dictionary(x:String, x:Object)" />
+                              </ufa:FormActivity.Body>
+                              <ufa:FormActivity.DelayBody>
+                                <ActivityAction x:TypeArguments="scg:Dictionary(x:String, x:Object)">
+                                  <Delay Duration="00:00:00.2500000" sap2010:WorkflowViewState.IdRef="Delay_1" />
+                                </ActivityAction>
+                              </ufa:FormActivity.DelayBody>
+                              <ufa:FormActivity.FormFieldsCollection>
+                                <InArgument x:TypeArguments="x:String" x:Key="Question">[Column + " (" + row.Item(i+1).ToString.Substring(5) + " points)"]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="StudentAnswer">[row.Item(i).ToString]</InArgument>
+                                <InArgument x:TypeArguments="x:Int32" x:Key="MaxPoints">[Integer.Parse(row.Item(i+1).ToString.Substring(5))]</InArgument>
+                                <OutArgument x:TypeArguments="x:Int32" x:Key="Score" />
+                              </ufa:FormActivity.FormFieldsCollection>
+                            </ufa:FormActivity>
+                            <ui:DeserializeJson x:TypeArguments="scg:Dictionary(x:String, x:String)" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_3" JsonObject="[DeserializedOutput]" JsonString="[FormOutput]" />
+                            <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_7">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Int32">[Score]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Int32">[Integer.Parse(DeserializedOutput("Score"))]</InArgument>
+                              </Assign.Value>
+                            </Assign>
                           </Sequence>
                         </DoWhile>
+                        <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_8">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Object">[row.Item(i + 1)]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Object">[Score.ToString]</InArgument>
+                          </Assign.Value>
+                        </Assign>
                         <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_4">
                           <Assign.To>
                             <OutArgument x:TypeArguments="x:Int32">[i]</OutArgument>
@@ -196,6 +231,7 @@
           </ActivityAction>
         </ui:ForEachRow.Body>
       </ui:ForEachRow>
+      <ui:WriteCsvFile Encoding="{x:Null}" AddHeaders="True" DataTable="[ResponsesDT]" Delimitator="Comma" DisplayName="Write CSV" FilePath="[FilePath]" sap:VirtualizedContainerService.HintSize="1013,155" sap2010:WorkflowViewState.IdRef="WriteCsvFile_1" />
     </Sequence>
   </Sequence>
 </Activity>
