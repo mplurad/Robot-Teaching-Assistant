@@ -5,6 +5,7 @@
   "dependencies": {
     "BalaReva.ZipUnzip.Activities": "[2020.4.2]",
     "UiPath.Excel.Activities": "[2.7.2]",
+    "UiPath.Form.Activities": "[1.1.11]",
     "UiPath.Mail.Activities": "[1.7.2]",
     "UiPath.System.Activities": "[19.10.1]",
     "UiPath.UIAutomation.Activities": "[19.11.3]"
