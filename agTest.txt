@@ -10,21 +10,3 @@ A4
 FR: How are you?
 25
 I'm good, thanks for asking.
-
-
-M: What is traditionally eaten on thanksgiving?
-76
-ADuck
-AFish
-ASword fish
-CTurkey
-
-
-
-
-
-
-
-
-
-

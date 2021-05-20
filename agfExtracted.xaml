@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="agfExtracted" sap:VirtualizedContainerService.HintSize="2137,9351" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:p="http://schemas.uipath.com/workflow/activities/cv" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing" xmlns:uc="clr-namespace:UiPath.CV;assembly=UiPath.CV" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="agfExtracted" sap:VirtualizedContainerService.HintSize="2137,10489" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:p="http://schemas.uipath.com/workflow/activities/cv" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing" xmlns:uc="clr-namespace:UiPath.CV;assembly=UiPath.CV" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="32">
       <x:String>System.Activities</x:String>
@@ -18,6 +18,7 @@
       <x:String>Microsoft.VisualBasic</x:String>
       <x:String>UiPath.Core</x:String>
       <x:String>UiPath.Core.Activities</x:String>
+      <x:String>UiPath.Vision.OCR</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -34,9 +35,13 @@
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities</AssemblyReference>
       <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Vision.Core</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="2117,9251" sap2010:WorkflowViewState.IdRef="Sequence_3">
+  <Sequence sap:VirtualizedContainerService.HintSize="2117,10429" sap2010:WorkflowViewState.IdRef="Sequence_3">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="notePadText" />
       <Variable x:TypeArguments="x:Int32" Name="startIndex" />
@@ -76,7 +81,7 @@
         <OutArgument x:TypeArguments="s:String[]">[questions]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="s:String[]">[notePadText.Split(New String() {vbCrLf}, StringSplitOptions.RemoveEmptyEntries)]</InArgument>
+        <InArgument x:TypeArguments="s:String[]">[{ "The hardest test of all time", "M: What is 1 + 1?", "12", "A1", "C2", "A3", "A4", "FR: How are you?", "25", "I'm good, thanks for asking."}]</InArgument>
       </Assign.Value>
     </Assign>
     <Assign sap:VirtualizedContainerService.HintSize="2075,60" sap2010:WorkflowViewState.IdRef="Assign_2">
@@ -103,13 +108,13 @@
         <InArgument x:TypeArguments="x:Int32">1</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:OpenBrowser CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Open Browser" sap:VirtualizedContainerService.HintSize="2075,8613" sap2010:WorkflowViewState.IdRef="OpenBrowser_1" Url="https://docs.google.com/forms/u/0/">
+    <ui:OpenBrowser CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Open Browser" sap:VirtualizedContainerService.HintSize="2075,9791" sap2010:WorkflowViewState.IdRef="OpenBrowser_1" Url="https://docs.google.com/forms/u/0/">
       <ui:OpenBrowser.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="2041,8514" sap2010:WorkflowViewState.IdRef="Sequence_10">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="2041,9692" sap2010:WorkflowViewState.IdRef="Sequence_10">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -138,6 +143,7 @@
                 </ui:Target>
               </ui:Click.Target>
             </ui:Click>
+            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="1999,22" sap2010:WorkflowViewState.IdRef="Delay_2" />
             <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SpecialKey="{x:Null}" Activate="True" DisplayName="Send Hotkey 'TEXTAREA'" sap:VirtualizedContainerService.HintSize="1999,155" sap2010:WorkflowViewState.IdRef="SendHotkey_1" Key="a" KeyModifiers="Ctrl">
               <ui:SendHotkey.Target>
                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="7e6316b081ab979ac33e091c357b11ff" Selector="&lt;webctrl idx='1' tag='TEXTAREA' /&gt;">
@@ -186,7 +192,7 @@
                 </ui:CursorPosition>
               </ui:Click.CursorPosition>
               <ui:Click.Target>
-                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="5d381cb758fa4323ae7d427a3c7ae83e" Selector="&lt;webctrl idx='1' parentid='organize-anchor' tag='SPAN' /&gt;&#xD;&#xA;&lt;nav up='4' /&gt;&#xD;&#xA;&lt;webctrl tag='INPUT' /&gt;&#xD;&#xA;">
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="5d381cb758fa4323ae7d427a3c7ae83e" Selector="&lt;webctrl idx='1' parentid='organize-anchor' tag='SPAN' /&gt;&#xA;&lt;nav up='4' /&gt;&#xA;&lt;webctrl tag='INPUT' /&gt;&#xA;">
                   <ui:Target.TimeoutMS>
                     <InArgument x:TypeArguments="x:Int32" />
                   </ui:Target.TimeoutMS>
@@ -196,6 +202,7 @@
                 </ui:Target>
               </ui:Click.Target>
             </ui:Click>
+            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="1999,22" sap2010:WorkflowViewState.IdRef="Delay_3" />
             <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'SPAN'" sap:VirtualizedContainerService.HintSize="1999,106" sap2010:WorkflowViewState.IdRef="Click_5" KeyModifiers="None" MouseButton="BTN_LEFT" SimulateClick="True">
               <ui:Click.CursorPosition>
                 <ui:CursorPosition Position="Center">
@@ -218,6 +225,7 @@
                 </ui:Target>
               </ui:Click.Target>
             </ui:Click>
+            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="1999,22" sap2010:WorkflowViewState.IdRef="Delay_4" />
             <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'DIV'" sap:VirtualizedContainerService.HintSize="1999,106" sap2010:WorkflowViewState.IdRef="Click_6" KeyModifiers="None" MouseButton="BTN_LEFT" SimulateClick="True">
               <ui:Click.CursorPosition>
                 <ui:CursorPosition Position="Center">
@@ -240,6 +248,7 @@
                 </ui:Target>
               </ui:Click.Target>
             </ui:Click>
+            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="1999,22" sap2010:WorkflowViewState.IdRef="Delay_5" />
             <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'DIV'" sap:VirtualizedContainerService.HintSize="1999,106" sap2010:WorkflowViewState.IdRef="Click_7" KeyModifiers="None" MouseButton="BTN_LEFT" SimulateClick="True">
               <ui:Click.CursorPosition>
                 <ui:CursorPosition Position="Center">
@@ -262,6 +271,7 @@
                 </ui:Target>
               </ui:Click.Target>
             </ui:Click>
+            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="1999,22" sap2010:WorkflowViewState.IdRef="Delay_6" />
             <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'SPAN'" sap:VirtualizedContainerService.HintSize="1999,106" sap2010:WorkflowViewState.IdRef="Click_8" KeyModifiers="None" MouseButton="BTN_LEFT" SimulateClick="True">
               <ui:Click.CursorPosition>
                 <ui:CursorPosition Position="Center">
@@ -284,6 +294,7 @@
                 </ui:Target>
               </ui:Click.Target>
             </ui:Click>
+            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="1999,22" sap2010:WorkflowViewState.IdRef="Delay_7" />
             <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'DIV'" sap:VirtualizedContainerService.HintSize="1999,106" sap2010:WorkflowViewState.IdRef="Click_9" KeyModifiers="None" MouseButton="BTN_LEFT" SimulateClick="True">
               <ui:Click.CursorPosition>
                 <ui:CursorPosition Position="Center">
@@ -306,6 +317,7 @@
                 </ui:Target>
               </ui:Click.Target>
             </ui:Click>
+            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="1999,22" sap2010:WorkflowViewState.IdRef="Delay_8" />
             <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'DIV'" sap:VirtualizedContainerService.HintSize="1999,106" sap2010:WorkflowViewState.IdRef="Click_10" KeyModifiers="None" MouseButton="BTN_LEFT" SimulateClick="True">
               <ui:Click.CursorPosition>
                 <ui:CursorPosition Position="Center">
@@ -328,6 +340,7 @@
                 </ui:Target>
               </ui:Click.Target>
             </ui:Click>
+            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="1999,22" sap2010:WorkflowViewState.IdRef="Delay_9" />
             <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'SPAN'" sap:VirtualizedContainerService.HintSize="1999,106" sap2010:WorkflowViewState.IdRef="Click_11" KeyModifiers="None" MouseButton="BTN_LEFT" SimulateClick="True">
               <ui:Click.CursorPosition>
                 <ui:CursorPosition Position="Center">
@@ -350,7 +363,8 @@
                 </ui:Target>
               </ui:Click.Target>
             </ui:Click>
-            <p:CVScope ContinueOnError="{x:Null}" DelayBefore="{x:Null}" Server="{x:Null}" ApiKey="MXVnVuBfTH0uGHC5z7OKjXLQqlaoarpyEQAymaTC2eGnEs+VOzMONS+E2UnrmvuPqohKOd2DacWRMSitDIlU4w==" DisplayName="CV Screen Scope 'chrome.exe'" sap:VirtualizedContainerService.HintSize="1999,530" sap2010:WorkflowViewState.IdRef="CVScope_1" Version="V1">
+            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="1999,22" sap2010:WorkflowViewState.IdRef="Delay_10" />
+            <p:CVScope ContinueOnError="{x:Null}" DelayBefore="{x:Null}" Server="{x:Null}" ApiKey="6DMRuQjVhfB4vZqjxhdu45jg5JXu/oX6sW2IAYcIE/ceSYoNSiGdItur8CT2LZT8yGXeUKcdov0PTl6baekMnQ==" DisplayName="CV Screen Scope 'chrome.exe'" sap:VirtualizedContainerService.HintSize="1999,654" sap2010:WorkflowViewState.IdRef="CVScope_1" Version="V1">
               <p:CVScope.Body>
                 <ActivityAction x:TypeArguments="x:Object">
                   <ActivityAction.Argument>
@@ -379,6 +393,7 @@
                         </ui:Target>
                       </ui:Click.Target>
                     </ui:Click>
+                    <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="400,22" sap2010:WorkflowViewState.IdRef="Delay_11" />
                     <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'SPAN'" sap:VirtualizedContainerService.HintSize="400,106" sap2010:WorkflowViewState.IdRef="Click_13" KeyModifiers="None" MouseButton="BTN_LEFT">
                       <ui:Click.CursorPosition>
                         <ui:CursorPosition Position="Center">
@@ -401,6 +416,7 @@
                         </ui:Target>
                       </ui:Click.Target>
                     </ui:Click>
+                    <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="400,22" sap2010:WorkflowViewState.IdRef="Delay_12" />
                   </Sequence>
                 </ActivityAction>
               </p:CVScope.Body>
@@ -622,11 +638,11 @@
                 </ui:Target>
               </p:CVScope.Target>
             </p:CVScope>
-            <While sap:VirtualizedContainerService.HintSize="1999,5912" sap2010:WorkflowViewState.IdRef="While_2">
+            <While sap:VirtualizedContainerService.HintSize="1999,6408" sap2010:WorkflowViewState.IdRef="While_2">
               <While.Condition>
                 <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="startIndex &lt; length" sap2010:WorkflowViewState.IdRef="VisualBasicValue`1_1" />
               </While.Condition>
-              <Sequence sap:VirtualizedContainerService.HintSize="1953,5753" sap2010:WorkflowViewState.IdRef="Sequence_7">
+              <Sequence sap:VirtualizedContainerService.HintSize="1953,6249" sap2010:WorkflowViewState.IdRef="Sequence_7">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -656,23 +672,23 @@
                     <InArgument x:TypeArguments="x:Int32">[integer.Parse(questions(startIndex + 1))]</InArgument>
                   </Assign.Value>
                 </Assign>
-                <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="1911,5361" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+                <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="1911,5857" sap2010:WorkflowViewState.IdRef="TryCatch_1">
                   <TryCatch.Try>
-                    <Sequence sap:VirtualizedContainerService.HintSize="1873,5129" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                    <Sequence sap:VirtualizedContainerService.HintSize="1873,5625" sap2010:WorkflowViewState.IdRef="Sequence_18">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <If Condition="[questions(startIndex).Substring(0, 1) = &quot;M&quot;]" sap:VirtualizedContainerService.HintSize="1831,4975" sap2010:WorkflowViewState.IdRef="If_1">
+                      <If Condition="[questions(startIndex).Substring(0, 1) = &quot;M&quot;]" sap:VirtualizedContainerService.HintSize="1831,5471" sap2010:WorkflowViewState.IdRef="If_1">
                         <If.Then>
-                          <Sequence sap:VirtualizedContainerService.HintSize="1310,4826" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                          <Sequence sap:VirtualizedContainerService.HintSize="1310,5322" sap2010:WorkflowViewState.IdRef="Sequence_17">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <Sequence sap:VirtualizedContainerService.HintSize="1268,4734" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                            <Sequence sap:VirtualizedContainerService.HintSize="1268,5230" sap2010:WorkflowViewState.IdRef="Sequence_5">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -699,7 +715,7 @@
                                   <InArgument x:TypeArguments="x:Boolean">True</InArgument>
                                 </Assign.Value>
                               </Assign>
-                              <p:CVScope ContinueOnError="{x:Null}" DelayBefore="{x:Null}" Server="{x:Null}" ApiKey="MXVnVuBfTH0uGHC5z7OKjXLQqlaoarpyEQAymaTC2eGnEs+VOzMONS+E2UnrmvuPqohKOd2DacWRMSitDIlU4w==" DisplayName="CV Screen Scope 'chrome.exe'" sap:VirtualizedContainerService.HintSize="1226,4267" sap2010:WorkflowViewState.IdRef="CVScope_3" Version="V1">
+                              <p:CVScope ContinueOnError="{x:Null}" DelayBefore="{x:Null}" Server="{x:Null}" ApiKey="6DMRuQjVhfB4vZqjxhdu45jg5JXu/oX6sW2IAYcIE/ceSYoNSiGdItur8CT2LZT8yGXeUKcdov0PTl6baekMnQ==" DisplayName="CV Screen Scope 'chrome.exe'" sap:VirtualizedContainerService.HintSize="1226,4763" sap2010:WorkflowViewState.IdRef="CVScope_3" Version="V1">
                                 <p:CVScope.Body>
                                   <ActivityAction x:TypeArguments="x:Object">
                                     <ActivityAction.Argument>
@@ -728,6 +744,7 @@
                                           </ui:Target>
                                         </ui:Click.Target>
                                       </ui:Click>
+                                      <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="1192,22" sap2010:WorkflowViewState.IdRef="Delay_13" />
                                       <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Send Hotkey" sap:VirtualizedContainerService.HintSize="1192,117" sap2010:WorkflowViewState.IdRef="SendHotkey_4" Key="pgdn" KeyModifiers="None" SpecialKey="True">
                                         <ui:SendHotkey.Target>
                                           <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}">
@@ -1216,6 +1233,7 @@
                                           </ui:Target>
                                         </p:CvClickWithDescriptor.Target>
                                       </p:CvClickWithDescriptor>
+                                      <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="1192,22" sap2010:WorkflowViewState.IdRef="Delay_14" />
                                       <While sap:VirtualizedContainerService.HintSize="1192,1570" sap2010:WorkflowViewState.IdRef="While_1">
                                         <While.Condition>
                                           <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="startIndex &lt; length and moreAnswers" sap2010:WorkflowViewState.IdRef="VisualBasicValue`1_6" />
@@ -1980,6 +1998,9 @@
                                           </ui:Target>
                                         </p:CvClickWithDescriptor.Target>
                                       </p:CvClickWithDescriptor>
+                                      <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="1192,22" sap2010:WorkflowViewState.IdRef="Delay_15" />
+                                      <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="1192,22" sap2010:WorkflowViewState.IdRef="Delay_16" />
+                                      <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="1192,22" sap2010:WorkflowViewState.IdRef="Delay_17" />
                                       <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'DIV'" sap:VirtualizedContainerService.HintSize="1192,106" sap2010:WorkflowViewState.IdRef="Click_26" KeyModifiers="None" MouseButton="BTN_LEFT">
                                         <ui:Click.CursorPosition>
                                           <ui:CursorPosition Position="Center">
@@ -2251,6 +2272,7 @@
                                           </ui:Target>
                                         </ui:SendHotkey.Target>
                                       </ui:SendHotkey>
+                                      <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="1192,22" sap2010:WorkflowViewState.IdRef="Delay_18" />
                                       <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'SPAN'" sap:VirtualizedContainerService.HintSize="1192,106" sap2010:WorkflowViewState.IdRef="Click_25" KeyModifiers="None" MouseButton="BTN_LEFT">
                                         <ui:Click.CursorPosition>
                                           <ui:CursorPosition Position="Center">
@@ -2273,6 +2295,7 @@
                                           </ui:Target>
                                         </ui:Click.Target>
                                       </ui:Click>
+                                      <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="1192,22" sap2010:WorkflowViewState.IdRef="Delay_19" />
                                       <p:CVRefresh DelayBefore="{x:Null}" TimeoutMS="{x:Null}" DisplayName="CV refresh" sap:VirtualizedContainerService.HintSize="1192,106" sap2010:WorkflowViewState.IdRef="CVRefresh_6" InformativeScreenshot="8057d5b7a712597c98628cbf9fd306a5" Version="V1">
                                         <p:CVRefresh.DesignTimeCache>
                                           <uc:CVCache InformativeScreenshot="7edde6f73a130605a1fd2886e777ffb1" LogicalPosition="62, 0" OcrText="Untitled form - Google Forms X +&#xA;a docxgoogle.com/forms/d/l ckqxBCiUX8w4b61TlFmt2NMNbsNNaOlz0jG641DkwGQ/edjt&#xA;M Gmail Ra'Zoho Connat&#xA;Untitled form Ü Re.'Pro Re.Git Re.'TimeSh&amp;t Re.'a Survey&#xA;All changes sued in Drive Farin descrjptian&#xA;Valicl en-lail JiPath VSCodeC# Google Docs A Grindin... icta&#xA;Multiple choice&#xA;Required New Gft - Cur&#xA;points: C OEV Complete Welcome Anton —... list&#xA;Ouestians Responses&#xA;This forni is collecting emaile Change settings&#xA;FR: question&#xA;Lang answer text&#xA;Ouestion&#xA;Option 1&#xA;Option 1&#xA;Add option or add &quot;Other&quot;&#xA;Answer key (0 paints)" Position="62, 0" ScaleFactor="1" ScreenshotGuid="85e30bac-ff04-4f8c-90d6-c969d181de6d" ServerVersion="1">
@@ -2486,6 +2509,7 @@
                                           </uc:CVCache>
                                         </p:CVRefresh.DesignTimeCache>
                                       </p:CVRefresh>
+                                      <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="1192,22" sap2010:WorkflowViewState.IdRef="Delay_30" />
                                       <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="1192,62" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[question + &quot;---&quot; +pointsWorth.ToString+ Environment.NewLine + &quot;Answers: &quot; + string.Join(&quot;, &quot;, answerList)]" />
                                     </Sequence>
                                   </ActivityAction>
@@ -2713,7 +2737,7 @@
                           </Sequence>
                         </If.Then>
                         <If.Else>
-                          <Sequence sap:VirtualizedContainerService.HintSize="476,3063" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                          <Sequence sap:VirtualizedContainerService.HintSize="476,3683" sap2010:WorkflowViewState.IdRef="Sequence_6">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -2736,7 +2760,7 @@
                               </Assign.Value>
                             </Assign>
                             <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="434,62" sap2010:WorkflowViewState.IdRef="WriteLine_3" Text="[question +pointsWorth.ToString+ &quot;---&quot; + answerFeedBack]" />
-                            <p:CVScope ContinueOnError="{x:Null}" DelayBefore="{x:Null}" Server="{x:Null}" ApiKey="MXVnVuBfTH0uGHC5z7OKjXLQqlaoarpyEQAymaTC2eGnEs+VOzMONS+E2UnrmvuPqohKOd2DacWRMSitDIlU4w==" DisplayName="CV Screen Scope 'chrome.exe'" sap:VirtualizedContainerService.HintSize="434,2669" sap2010:WorkflowViewState.IdRef="CVScope_2" Version="V1">
+                            <p:CVScope ContinueOnError="{x:Null}" DelayBefore="{x:Null}" Server="{x:Null}" ApiKey="6DMRuQjVhfB4vZqjxhdu45jg5JXu/oX6sW2IAYcIE/ceSYoNSiGdItur8CT2LZT8yGXeUKcdov0PTl6baekMnQ==" DisplayName="CV Screen Scope 'chrome.exe'" sap:VirtualizedContainerService.HintSize="434,3289" sap2010:WorkflowViewState.IdRef="CVScope_2" Version="V1">
                               <p:CVScope.Body>
                                 <ActivityAction x:TypeArguments="x:Object">
                                   <ActivityAction.Argument>
@@ -2765,6 +2789,7 @@
                                         </ui:Target>
                                       </ui:Click.Target>
                                     </ui:Click>
+                                    <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="400,22" sap2010:WorkflowViewState.IdRef="Delay_20" />
                                     <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Send Hotkey" sap:VirtualizedContainerService.HintSize="400,117" sap2010:WorkflowViewState.IdRef="SendHotkey_3" Key="pgdn" KeyModifiers="None" SpecialKey="True">
                                       <ui:SendHotkey.Target>
                                         <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}">
@@ -2777,6 +2802,7 @@
                                         </ui:Target>
                                       </ui:SendHotkey.Target>
                                     </ui:SendHotkey>
+                                    <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="400,22" sap2010:WorkflowViewState.IdRef="Delay_21" />
                                     <p:CVRefresh DelayBefore="{x:Null}" TimeoutMS="{x:Null}" DisplayName="CV refresh" sap:VirtualizedContainerService.HintSize="400,106" sap2010:WorkflowViewState.IdRef="CVRefresh_10" InformativeScreenshot="38a777d98e92de8e50443f96ecb6c555" Version="V1">
                                       <p:CVRefresh.DesignTimeCache>
                                         <uc:CVCache InformativeScreenshot="04fa594006f49a07dcf6d77949a11bbc" LogicalPosition="62, 0" OcrText="Untitled form - Google Forms X +&#xA;a docxgoogle.com/forms/d/l OTfPxcrhGMlt)8PhNA1kp1 QmKh8c3xrzFWFqOo-159w/edit&#xA;M Gmail Re.'Zoho Connat&#xA;Untitled form Ü Re.'Pro Re.Git Re.'TimeSh&amp;t Re.'a Survey&#xA;All changes sued in Drive Farin descrjptian&#xA;Valicl en-lail JiPath VSCodeC# Google Docs A Grindin... New Gft - Cur&#xA;icta points: 12&#xA;Paragraph&#xA;Required OEV Complete Welcome Anton —... list&#xA;Ouestians Responses&#xA;This forni is collecting emaile Change settings&#xA;FR: question&#xA;Lang answer text&#xA;FR: anotherQ&#xA;Lang answer text&#xA;Lang answer text&#xA;Answer key (0 paints)" Position="62, 0" ScaleFactor="1" ScreenshotGuid="331c6077-4950-4eee-b604-1acf0cd96d33" ServerVersion="1">
@@ -2988,6 +3014,7 @@
                                         </uc:CVCache>
                                       </p:CVRefresh.DesignTimeCache>
                                     </p:CVRefresh>
+                                    <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="400,22" sap2010:WorkflowViewState.IdRef="Delay_22" />
                                     <p:CvClickWithDescriptor DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" Descriptor="[&quot;Target: Text 'Multiple choice' (1115,538,96,14)&quot;]" DesignTimeScaleFactor="1" DisplayName="CV Click - Text" sap:VirtualizedContainerService.HintSize="400,106" sap2010:WorkflowViewState.IdRef="CvClickWithDescriptor_2" InformativeScreenshot="16545bcac17942a61673f1ff55ab4322" KeyModifiers="None" MouseButton="BTN_LEFT" Version="V1">
                                       <p:CvClickWithDescriptor.CursorPosition>
                                         <ui:CursorPosition Position="Center">
@@ -3017,6 +3044,7 @@
                                         </ui:Target>
                                       </p:CvClickWithDescriptor.Target>
                                     </p:CvClickWithDescriptor>
+                                    <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="400,22" sap2010:WorkflowViewState.IdRef="Delay_23" />
                                     <p:CvClickWithDescriptor DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" Descriptor="[&quot;Target: Text 'Paragraph' (1115,493,64,14)&quot;]" DesignTimeScaleFactor="1" DisplayName="CV Click - Text" sap:VirtualizedContainerService.HintSize="400,106" sap2010:WorkflowViewState.IdRef="CvClickWithDescriptor_3" InformativeScreenshot="4291d0d15be5490b48347c72039d1668" KeyModifiers="None" MouseButton="BTN_LEFT" Version="V1">
                                       <p:CvClickWithDescriptor.CursorPosition>
                                         <ui:CursorPosition Position="Center">
@@ -3046,6 +3074,7 @@
                                         </ui:Target>
                                       </p:CvClickWithDescriptor.Target>
                                     </p:CvClickWithDescriptor>
+                                    <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="400,22" sap2010:WorkflowViewState.IdRef="Delay_24" />
                                     <p:CVRefresh DelayBefore="{x:Null}" TimeoutMS="{x:Null}" DisplayName="CV refresh" sap:VirtualizedContainerService.HintSize="400,106" sap2010:WorkflowViewState.IdRef="CVRefresh_3" InformativeScreenshot="38a777d98e92de8e50443f96ecb6c555" Version="V1">
                                       <p:CVRefresh.DesignTimeCache>
                                         <uc:CVCache InformativeScreenshot="04fa594006f49a07dcf6d77949a11bbc" LogicalPosition="62, 0" OcrText="Untitled form - Google Forms X +&#xA;a docxgoogle.com/forms/d/l OTfPxcrhGMlt)8PhNA1kp1 QmKh8c3xrzFWFqOo-159w/edit&#xA;M Gmail Re.'Zoho Connat&#xA;Untitled form Ü Re.'Pro Re.Git Re.'TimeSh&amp;t Re.'a Survey&#xA;All changes sued in Drive Farin descrjptian&#xA;Valicl en-lail JiPath VSCodeC# Google Docs A Grindin... New Gft - Cur&#xA;icta points: 12&#xA;Paragraph&#xA;Required OEV Complete Welcome Anton —... list&#xA;Ouestians Responses&#xA;This forni is collecting emaile Change settings&#xA;FR: question&#xA;Lang answer text&#xA;FR: anotherQ&#xA;Lang answer text&#xA;Lang answer text&#xA;Answer key (0 paints)" Position="62, 0" ScaleFactor="1" ScreenshotGuid="331c6077-4950-4eee-b604-1acf0cd96d33" ServerVersion="1">
@@ -3528,6 +3557,7 @@
                                         </ui:Target>
                                       </p:CvClickWithDescriptor.Target>
                                     </p:CvClickWithDescriptor>
+                                    <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="400,22" sap2010:WorkflowViewState.IdRef="Delay_25" />
                                     <p:CvClickWithDescriptor DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" Descriptor="[&quot;Target: Text 'Answer key' (602,845,76,13)&quot; +&#xA;&quot;Anchor: Icon (569,838,24,25)&quot;]" DesignTimeScaleFactor="1" DisplayName="CV Click - Text" sap:VirtualizedContainerService.HintSize="400,106" sap2010:WorkflowViewState.IdRef="CvClickWithDescriptor_5" InformativeScreenshot="d53a4298984c6143b582d3dd121ad63a" KeyModifiers="None" MouseButton="BTN_LEFT" Version="V1">
                                       <p:CvClickWithDescriptor.CursorPosition>
                                         <ui:CursorPosition Position="Center">
@@ -3562,6 +3592,7 @@
                                         </ui:Target>
                                       </p:CvClickWithDescriptor.Target>
                                     </p:CvClickWithDescriptor>
+                                    <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="400,22" sap2010:WorkflowViewState.IdRef="Delay_26" />
                                     <p:CvTypeIntoWithDescriptor DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" ClickBeforeTyping="True" Descriptor="[&quot;Target: Image (1190,679,50,28)&quot; +&#xA;&quot;Anchor: Icon (1338,674,28,24)&quot;]" DesignTimeScaleFactor="1" DisplayName="CV Type Into - Image" EmptyField="True" sap:VirtualizedContainerService.HintSize="400,134" sap2010:WorkflowViewState.IdRef="CvTypeIntoWithDescriptor_2" InformativeScreenshot="a8feefdb806d687733b8a5865cf33c3b" Text="[pointsWorth.ToString]" Version="V1">
                                       <p:CvTypeIntoWithDescriptor.DesignTimeDescriptor>
                                         <uc:CvDescriptor>
@@ -3608,6 +3639,7 @@
                                         </ui:Target>
                                       </ui:Click.Target>
                                     </ui:Click>
+                                    <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="400,22" sap2010:WorkflowViewState.IdRef="Delay_27" />
                                     <ui:TypeInto ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'TEXTAREA'" sap:VirtualizedContainerService.HintSize="400,134" sap2010:WorkflowViewState.IdRef="TypeInto_5" Text="[answerFeedBack]">
                                       <ui:TypeInto.Target>
                                         <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="4a28c16aca963f5238007864b09e94cd" Selector="&lt;webctrl parentid='wizViewportRootId' tag='TEXTAREA' /&gt;">
@@ -3642,6 +3674,7 @@
                                         </ui:Target>
                                       </ui:Click.Target>
                                     </ui:Click>
+                                    <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="400,22" sap2010:WorkflowViewState.IdRef="Delay_28" />
                                     <p:CVRefresh DelayBefore="{x:Null}" TimeoutMS="{x:Null}" DisplayName="CV refresh" sap:VirtualizedContainerService.HintSize="400,106" sap2010:WorkflowViewState.IdRef="CVRefresh_2" InformativeScreenshot="8057d5b7a712597c98628cbf9fd306a5" Version="V1">
                                       <p:CVRefresh.DesignTimeCache>
                                         <uc:CVCache InformativeScreenshot="7edde6f73a130605a1fd2886e777ffb1" LogicalPosition="62, 0" OcrText="Untitled form - Google Forms X +&#xA;a docxgoogle.com/forms/d/l ckqxBCiUX8w4b61TlFmt2NMNbsNNaOlz0jG641DkwGQ/edjt&#xA;M Gmail Ra'Zoho Connat&#xA;Untitled form Ü Re.'Pro Re.Git Re.'TimeSh&amp;t Re.'a Survey&#xA;All changes sued in Drive Farin descrjptian&#xA;Valicl en-lail JiPath VSCodeC# Google Docs A Grindin... icta&#xA;Multiple choice&#xA;Required New Gft - Cur&#xA;points: C OEV Complete Welcome Anton —... list&#xA;Ouestians Responses&#xA;This forni is collecting emaile Change settings&#xA;FR: question&#xA;Lang answer text&#xA;Ouestion&#xA;Option 1&#xA;Option 1&#xA;Add option or add &quot;Other&quot;&#xA;Answer key (0 paints)" Position="62, 0" ScaleFactor="1" ScreenshotGuid="85e30bac-ff04-4f8c-90d6-c969d181de6d" ServerVersion="1">
@@ -3877,6 +3910,7 @@
                                         </ui:Target>
                                       </ui:Click.Target>
                                     </ui:Click>
+                                    <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="400,22" sap2010:WorkflowViewState.IdRef="Delay_29" />
                                   </Sequence>
                                 </ActivityAction>
                               </p:CVScope.Body>
@@ -4123,13 +4157,13 @@
                         <ActivityAction.Argument>
                           <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                         </ActivityAction.Argument>
-                        <Sequence sap:VirtualizedContainerService.HintSize="476,682" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                        <Sequence sap:VirtualizedContainerService.HintSize="476,722" sap2010:WorkflowViewState.IdRef="Sequence_16">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <p:CVScope ContinueOnError="{x:Null}" DelayBefore="{x:Null}" Server="{x:Null}" ApiKey="MXVnVuBfTH0uGHC5z7OKjXLQqlaoarpyEQAymaTC2eGnEs+VOzMONS+E2UnrmvuPqohKOd2DacWRMSitDIlU4w==" DisplayName="CV Screen Scope 'DIV  Tj9Y4e'" sap:VirtualizedContainerService.HintSize="434,530" sap2010:WorkflowViewState.IdRef="CVScope_4" Version="V1">
+                          <p:CVScope ContinueOnError="{x:Null}" DelayBefore="{x:Null}" Server="{x:Null}" ApiKey="6DMRuQjVhfB4vZqjxhdu45jg5JXu/oX6sW2IAYcIE/ceSYoNSiGdItur8CT2LZT8yGXeUKcdov0PTl6baekMnQ==" DisplayName="CV Screen Scope 'DIV  Tj9Y4e'" sap:VirtualizedContainerService.HintSize="434,530" sap2010:WorkflowViewState.IdRef="CVScope_4" Version="V1">
                             <p:CVScope.Body>
                               <ActivityAction x:TypeArguments="x:Object">
                                 <ActivityAction.Argument>
